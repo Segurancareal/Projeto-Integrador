@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.generation.segurancareal.model.Tema;
+import org.generation.segurancareal.repository.TemaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemaController {
 	
+	@Autowired
 	private TemaRepository repository;
 	
 	//Get mapping ALL
@@ -32,25 +34,25 @@ public class TemaController {
 	}
 	
 	//Get mapping para encontrar a ID do tema
-	@GetMapping 
-	public ResponseEntity<List<Tema>> getById(@Valid @PathVariable long id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<Tema> getById(@Valid @PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	//Get mapping para encontrar a Descricao do tema
-	@GetMapping
+	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Tema>> getByDescricao(@Valid @PathVariable String descricao){
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
 		
 	}
 	
-	@GetMapping
+	@GetMapping("/hashtag/{hashtag}")
 	public ResponseEntity<List<Tema>> getByHashtag(@Valid @PathVariable String hashtag){
 		return ResponseEntity.ok(repository.findAllByHashtagContainingIgnoreCase(hashtag));
 	}
 	
-	@GetMapping
+	@GetMapping("/assunto/{assunto}")
 	public ResponseEntity<List<Tema>> getByAssunto(@Valid @PathVariable String assunto) {
 		return ResponseEntity.ok(repository.findAllByAssuntoContainingIgnoreCase(assunto));
 	}
