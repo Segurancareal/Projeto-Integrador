@@ -9,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.stereotype.Repository;
-
 //to do Colocar as mensagens de verificação da regra que constroi na entity.
 @Entity
 @Table(name = "tb_temas")
