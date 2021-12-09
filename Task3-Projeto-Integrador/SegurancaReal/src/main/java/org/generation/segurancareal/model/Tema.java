@@ -9,22 +9,24 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table (name = "tb_temas")
+import org.springframework.stereotype.Repository;
 
+//to do Colocar as mensagens de verificação da regra que constroi na entity.
+@Entity
+@Table(name = "tb_temas")
 public class Tema {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotBlank(message = "O atributo descrição não pode estar vazio")
 	private String descricao;
-	
+
 	@NotNull
 	@Size(min = 2, max = 500)
 	private String hashtag;
-	
+
 	@NotBlank(message = "O atributo Assunto não pode estar vazio")
 	private String assunto;
 
@@ -59,6 +61,5 @@ public class Tema {
 	public void setAssunto(String assunto) {
 		this.assunto = assunto;
 	}
-	
 
 }
