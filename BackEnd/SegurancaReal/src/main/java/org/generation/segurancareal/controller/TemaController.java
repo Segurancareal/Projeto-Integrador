@@ -35,25 +35,25 @@ public class TemaController {
 	
 	//Get mapping para encontrar a ID do tema
 	@GetMapping("/{id}")
-	public ResponseEntity<Tema> getById(@Valid @PathVariable long id) {
+	public ResponseEntity<Tema> getById(@PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	//Get mapping para encontrar a Descricao do tema
 	@GetMapping("/descricao/{descricao}")
-	public ResponseEntity<List<Tema>> getByDescricao(@Valid @PathVariable String descricao){
+	public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao){
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
 		
 	}
 	
 	@GetMapping("/hashtag/{hashtag}")
-	public ResponseEntity<List<Tema>> getByHashtag(@Valid @PathVariable String hashtag){
+	public ResponseEntity<List<Tema>> getByHashtag(@PathVariable String hashtag){
 		return ResponseEntity.ok(repository.findAllByHashtagContainingIgnoreCase(hashtag));
 	}
 	
 	@GetMapping("/assunto/{assunto}")
-	public ResponseEntity<List<Tema>> getByAssunto(@Valid @PathVariable String assunto) {
+	public ResponseEntity<List<Tema>> getByAssunto(@PathVariable String assunto) {
 		return ResponseEntity.ok(repository.findAllByAssuntoContainingIgnoreCase(assunto));
 	}
 	
@@ -70,7 +70,7 @@ public class TemaController {
 		
 	}
 	@DeleteMapping("/{id}")
-	public void delete(@Valid @PathVariable long id) {
+	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 	

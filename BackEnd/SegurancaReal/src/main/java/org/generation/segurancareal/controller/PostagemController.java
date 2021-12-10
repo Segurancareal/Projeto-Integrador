@@ -1,4 +1,4 @@
-package org.generation.segurancareal.Controller;
+package org.generation.segurancareal.controller;
 
 import java.util.List;
 
@@ -42,37 +42,38 @@ public class PostagemController {
 
 	// procurar uma categoria pela idade
 	@GetMapping("/texto/{texto}")
-	public ResponseEntity<List<Postagem>> getByTexto(@Valid @PathVariable String texto){
+	public ResponseEntity<List<Postagem>> getByTexto(@PathVariable String texto){
 		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(texto));
 	}
 	
 	// procurar uma categoria pela classificacao
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<Postagem>> getByTitulo(@Valid @PathVariable String titulo){
+	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
 	// procurar uma categoria pela validade
 	@GetMapping("/data/{data}")
-		public ResponseEntity<List<Postagem>> getByData(@Valid @PathVariable String data){
+		public ResponseEntity<List<Postagem>> getByData(@PathVariable String data){
 			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
 	}
 		
+	//Procurar Categoria Foto
 	@GetMapping("/foto/{foto}")
-		public ResponseEntity<List<Postagem>> getByFoto(@Valid @PathVariable String foto){
+		public ResponseEntity<List<Postagem>> getByFoto(@PathVariable String foto){
 			return ResponseEntity.ok(repository.findAllByFotoContainingIgnoreCase(foto));
 	}
 	
     // inserir um novo dado no BD
 	@PostMapping
-	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){
+	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(repository.save(postagem));
 	}
 
     // atualizar dados ja existentes
 	@PutMapping
-	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
+	public ResponseEntity<Postagem> put (@Valid @RequestBody Postagem postagem){
 		return ResponseEntity.ok(repository.save(postagem));				
 	}
     
@@ -81,7 +82,4 @@ public class PostagemController {
 	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
-}
- 
-
 }
