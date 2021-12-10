@@ -5,18 +5,31 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.generation.segurancareal.model.Postagem;
+
 import org.generation.segurancareal.repository.PostagemRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,44 +40,44 @@ public class PostagemController {
 	@Autowired
     private PostagemRepository repository;
 
-    // retornar todos os temas existentes
+    // retornar todas as postagens
     @GetMapping
 	public ResponseEntity<List<Postagem>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-    // procurar uma categoria pelo id
+    // procurar uma postagem pelo id
 	@GetMapping("/{id}")
 	public ResponseEntity<Postagem> getById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-	// procurar uma categoria pela idade
+	// procurar uma postagem pelo texto
 	@GetMapping("/texto/{texto}")
 	public ResponseEntity<List<Postagem>> getByTexto(@PathVariable String texto){
 		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(texto));
 	}
 	
-	// procurar uma categoria pela classificacao
+	// procurar uma postagem pelo titulo
 	@GetMapping("/titulo/{titulo}")
 	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-	// procurar uma categoria pela validade
+	// procurar uma postagem pela data
 	@GetMapping("/data/{data}")
 		public ResponseEntity<List<Postagem>> getByData(@PathVariable String data){
 			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
 	}
 		
-	//Procurar Categoria Foto
+	//Procurar uma postagem pela foto
 	@GetMapping("/foto/{foto}")
 		public ResponseEntity<List<Postagem>> getByFoto(@PathVariable String foto){
 			return ResponseEntity.ok(repository.findAllByFotoContainingIgnoreCase(foto));
 	}
 	
-    // inserir um novo dado no BD
+    // inserir um novo dado 
 	@PostMapping
 	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED)
@@ -73,13 +86,26 @@ public class PostagemController {
 
     // atualizar dados ja existentes
 	@PutMapping
-	public ResponseEntity<Postagem> put (@Valid @RequestBody Postagem postagem){
-		return ResponseEntity.ok(repository.save(postagem));				
+	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
+					
+		return repository.findById(postagem.getId())
+				.map(resposta -> {
+					return ResponseEntity.ok().body(repository.save(postagem));
+				})
+				.orElse(ResponseEntity.notFound().build());
+
 	}
     
     // deletar um dado pelo id
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		repository.deleteById(id);
+	public ResponseEntity<?> deletePostagem(@PathVariable long id) {
+		
+		return repository.findById(id)
+				.map(resposta -> {
+					repository.deleteById(id);
+					return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+				})
+				.orElse(ResponseEntity.notFound().build());
 	}
+
 }
