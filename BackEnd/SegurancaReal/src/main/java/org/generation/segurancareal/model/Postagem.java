@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "tb_postagem")
-
 public class Postagem {
 	
 	@Id
@@ -32,7 +31,7 @@ public class Postagem {
 	private String titulo;
 	
 	@NotBlank (message = "Insira Texto")
-	@Size (min=5,max=2000)
+	@Size (min=5,max=255,message = "O campo texto precisa ter no minimo 5 caracteres e no maximo 255.")
 	private String texto;
 	
 	@NotBlank (message = "Insira Data")
