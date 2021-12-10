@@ -1,13 +1,19 @@
 package org.generation.segurancareal.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //to do Colocar as mensagens de verificação da regra que constroi na entity.
 @Entity
@@ -27,6 +33,10 @@ public class Tema {
 
 	@NotBlank(message = "O atributo Assunto não pode estar vazio")
 	private String assunto;
+	
+	@OneToMany(mappedBy = "Tema", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("Tema")
+	private List<Postagem> postagem;
 
 	public long getId() {
 		return id;
