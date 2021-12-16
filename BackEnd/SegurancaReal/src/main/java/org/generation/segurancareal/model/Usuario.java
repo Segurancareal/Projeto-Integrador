@@ -31,20 +31,30 @@ public class Usuario {
 	private long id;
 
     @NotBlank (message = "Por favor insira o Nome")
+    @Size(min = 2, max = 100)
     private String nome;
 
     @NotBlank (message = "Por favor insira o e-mal")
+<<<<<<< HEAD
     @Email
+=======
+    @Email(message = "O atributo Usuário deve ser um email válido!")
+    @Size(min = 2)
+>>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed
     private String email;
 
     @NotBlank (message = "Por favor insira a senha de no minimo 6 caracteres")
-    @Size(min = 6)
+    @Size(min = 6,  message = "A Senha deve ter no mínimo 6 caracteres")
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed
     public long getId() {
         return id;
     }
