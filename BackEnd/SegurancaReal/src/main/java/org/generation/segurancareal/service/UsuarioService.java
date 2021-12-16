@@ -20,7 +20,7 @@ public class UsuarioService {
 	
 	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
 
-		if (usuarioRepository.findByUsuario(usuario.getEmail()).isPresent())
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
 			return Optional.empty();
 		
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
@@ -32,7 +32,7 @@ public class UsuarioService {
 	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
 
 		
-		if (usuarioRepository.findByUsuario(usuario.getEmail()).isPresent()) {
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent()) {
 			
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
 			

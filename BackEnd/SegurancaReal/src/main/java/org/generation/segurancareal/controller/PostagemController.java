@@ -32,12 +32,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/postagem")
-@CrossOrigin(origins = "*", allowedHeaders = "*") 
+@RestController //informa p/ o Spring q a classe é um controlador
+@RequestMapping("/postagem") // URI pela qual a classe será acessada
+@CrossOrigin(origins = "*", allowedHeaders = "*") // a classe vai aceitar requisições de qlqr origem
 public class PostagemController { 
 	
-	@Autowired
+	@Autowired // garante que os serviços da interface seja acessado a patir do controller
     private PostagemRepository repository;
 
     // retornar todas as postagens

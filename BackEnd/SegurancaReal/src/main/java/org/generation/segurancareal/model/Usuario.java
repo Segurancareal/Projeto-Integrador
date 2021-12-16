@@ -37,7 +37,7 @@ public class Usuario {
     @NotBlank (message = "Por favor insira o e-mal")
     @Email(message = "O atributo Usuário deve ser um email válido!")
     @Size(min = 2)
-    private String email;
+    private String usuario;
 
     @NotBlank (message = "Por favor insira a senha de no minimo 6 caracteres")
     @Size(min = 6,  message = "A Senha deve ter no mínimo 6 caracteres")
@@ -64,15 +64,15 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+	return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+	this.usuario = usuario;
     }
 
-    public String getSenha() {
+	public String getSenha() {
         return senha;
     }
 
