@@ -4,50 +4,89 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
-import org.generation.segurancareal.model.UserLogin;
-import org.generation.segurancareal.model.Usuario;
-import org.generation.segurancareal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import org.generation.segurancareal.model.Usuario;
+import org.generation.segurancareal.model.UserLogin;
+import org.generation.segurancareal.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioRepository usuarioRepository;
+	
+	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
 
-	public Usuario CadastrarUsuario(Usuario usuario) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if (usuarioRepository.findByUsuario(usuario.getEmail()).isPresent())
+			return Optional.empty();
+		
+		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 
-		String senhaEncoder = encoder.encode(usuario.getSenha());
-		usuario.setSenha(senhaEncoder);
-
-		return repository.save(usuario);
+		return Optional.of(usuarioRepository.save(usuario));
+	
 	}
 
-	public Optional<UserLogin> logar(Optional<UserLogin> user) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
+	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
+
+		
+		if (usuarioRepository.findByUsuario(usuario.getEmail()).isPresent()) {
+			
+			usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			
+			return Optional.of(usuarioRepository.save(usuario));
+			
+		}
+			
+		return Optional.empty();
+
+	}	
+
+	public Optional<UserLogin> autenticarUsuario(Optional<UserLogin> usuarioLogin) {
+
+		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
 		if (usuario.isPresent()) {
-			if (encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
+			if (compararSenhas(usuarioLogin.get().getSenha(), usuario.get().getSenha())) {
 
-				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
-				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+				usuarioLogin.get().setId(usuario.get().getId());
+				usuarioLogin.get().setNome(usuario.get().getNome());
+				usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
+				usuarioLogin.get().setSenha(usuario.get().getSenha());
 
-				String authHeader = "Basic" + new String(encodedAuth);
-
-				user.get().setToken(authHeader);
-				user.get().setNome(usuario.get().getNome());
-				user.get().setSenha(usuario.get().getSenha());
-
-				return user;
+				return usuarioLogin;
 
 			}
+		}	
+		
+		return Optional.empty();
+		
+	}
 
-		}
-		return null;
+	private String criptografarSenha(String senha) {
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		return encoder.encode(senha);
+
+	}
+	
+	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		return encoder.matches(senhaDigitada, senhaBanco);
+
+	}
+
+	private String gerarBasicToken(String usuario, String senha) {
+
+		String token = usuario + ":" + senha;
+		byte[] tokenBase64 = Base64.encodeBase64(token.getBytes(Charset.forName("US-ASCII")));
+		return "Basic " + new String(tokenBase64);
+
 	}
 
 }

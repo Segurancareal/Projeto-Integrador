@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
@@ -34,6 +34,7 @@ public class Usuario {
     private String nome;
 
     @NotBlank (message = "Por favor insira o e-mal")
+    @Email
     private String email;
 
     @NotBlank (message = "Por favor insira a senha de no minimo 6 caracteres")
@@ -43,7 +44,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
-
+    
     public long getId() {
         return id;
     }
