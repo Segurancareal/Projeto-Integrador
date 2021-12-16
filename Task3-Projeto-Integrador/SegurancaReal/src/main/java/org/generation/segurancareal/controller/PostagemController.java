@@ -1,4 +1,4 @@
-package org.generation.segurancareal.Controller;
+package org.generation.segurancareal.controller;
 
 import java.util.List;
 
@@ -27,32 +27,27 @@ public class PostagemController {
 	@Autowired
     private PostagemRepository repository;
 
-    // retornar todos os temas existentes
     @GetMapping
 	public ResponseEntity<List<Postagem>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-    // procurar uma categoria pelo id
 	@GetMapping("/{id}")
 	public ResponseEntity<Postagem> getById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-	// procurar uma categoria pela idade
 	@GetMapping("/texto/{texto}")
 	public ResponseEntity<List<Postagem>> getByTexto(@Valid @PathVariable String texto){
 		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(texto));
 	}
 	
-	// procurar uma categoria pela classificacao
 	@GetMapping("/titulo/{titulo}")
 	public ResponseEntity<List<Postagem>> getByTitulo(@Valid @PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-	// procurar uma categoria pela validade
 	@GetMapping("/data/{data}")
 		public ResponseEntity<List<Postagem>> getByData(@Valid @PathVariable String data){
 			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
@@ -63,14 +58,12 @@ public class PostagemController {
 			return ResponseEntity.ok(repository.findAllByFotoContainingIgnoreCase(foto));
 	}
 	
-    // inserir um novo dado no BD
 	@PostMapping
 	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(repository.save(postagem));
 	}
 
-    // atualizar dados ja existentes
 	@PutMapping
 	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
 		return ResponseEntity.ok(repository.save(postagem));				
@@ -83,5 +76,3 @@ public class PostagemController {
 	}
 }
  
-
-}
