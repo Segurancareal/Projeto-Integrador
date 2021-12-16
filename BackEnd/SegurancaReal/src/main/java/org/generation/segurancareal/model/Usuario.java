@@ -43,6 +43,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
+    
 
     public long getId() {
         return id;
