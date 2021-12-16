@@ -1,4 +1,4 @@
-package br.org.generation.blogpessoal.seguranca;
+package org.generation.segurancareal.seguranca;
 
 import java.util.Collection;
 
@@ -15,7 +15,7 @@ public class UserDetailsImpl implements UserDetails {
 	private String passWord;
 	
 	public UserDetailsImpl(Usuario user) {
-		this.userName = user.getUsuario();
+		this.userName = user.getEmail();
 		this.passWord = user.getSenha();
 	}
 	

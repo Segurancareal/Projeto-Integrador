@@ -40,48 +40,36 @@ public class PostagemController {
 	@Autowired
     private PostagemRepository repository;
 
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
     // retornar todas as postagens
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
     @GetMapping
 	public ResponseEntity<List<Postagem>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
     // procurar uma postagem pelo id
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-	@GetMapping("/{id}")
+    @GetMapping("/{id}")
 	public ResponseEntity<Postagem> getById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
+
 	// procurar uma postagem pelo texto
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-	@GetMapping("/texto/{texto}")
+    @GetMapping("/texto/{texto}")
 	public ResponseEntity<List<Postagem>> getByTexto(@PathVariable String texto){
 		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(texto));
 	}
 	
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
+
 	// procurar uma postagem pelo titulo
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-	@GetMapping("/titulo/{titulo}")
+    @GetMapping("/titulo/{titulo}")
 	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
+
 	// procurar uma postagem pela data
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-	@GetMapping("/data/{data}")
+    	@GetMapping("/data/{data}")
 		public ResponseEntity<List<Postagem>> getByData(@PathVariable String data){
 			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
 	}
@@ -92,10 +80,8 @@ public class PostagemController {
 			return ResponseEntity.ok(repository.findAllByFotoContainingIgnoreCase(foto));
 	}
 	
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
-=======
+
     // inserir um novo dado 
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
 	@PostMapping
 	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED)
@@ -124,10 +110,4 @@ public class PostagemController {
 				})
 				.orElse(ResponseEntity.notFound().build());
 	}
-<<<<<<< HEAD:Task3-Projeto-Integrador/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
 }
- 
-=======
-
-}
->>>>>>> 585ca2f0f3cfe00d8794006f64d16737b9a749ed:BackEnd/SegurancaReal/src/main/java/org/generation/segurancareal/controller/PostagemController.java
