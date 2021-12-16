@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
@@ -31,13 +31,16 @@ public class Usuario {
 	private long id;
 
     @NotBlank (message = "Por favor insira o Nome")
+    @Size(min = 2, max = 100)
     private String nome;
 
     @NotBlank (message = "Por favor insira o e-mal")
+    @Email(message = "O atributo Usuário deve ser um email válido!")
+    @Size(min = 2)
     private String email;
 
     @NotBlank (message = "Por favor insira a senha de no minimo 6 caracteres")
-    @Size(min = 6)
+    @Size(min = 6,  message = "A Senha deve ter no mínimo 6 caracteres")
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
