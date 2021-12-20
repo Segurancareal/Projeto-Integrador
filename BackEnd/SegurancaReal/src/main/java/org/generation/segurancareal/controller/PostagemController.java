@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController //informa p/ o Spring q a classe é um controlador
-@RequestMapping("/postagem") // URI pela qual a classe será acessada
+@RequestMapping("/postagens") // URI pela qual a classe será acessada
 @CrossOrigin(origins = "*", allowedHeaders = "*") // a classe vai aceitar requisições de qlqr origem
 public class PostagemController { 
 	

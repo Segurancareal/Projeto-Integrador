@@ -18,8 +18,5 @@ public interface TemaRepository extends JpaRepository<Tema, Long> {
 	public Optional<Tema> findByDescricao(String descricao);
 	
 	public List<Tema> findAllByHashtagContainingIgnoreCase(String hashtag);
-	
-	public List<Tema> findAllByAssuntoContainingIgnoreCase(String assunto);
-	
 
 }

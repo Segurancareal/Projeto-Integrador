@@ -23,7 +23,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table (name = "tb_postagem")
+@Table (name = "tb_postagens")
 public class Postagem {
 	
 	@Id
@@ -44,11 +44,11 @@ public class Postagem {
 	private String foto;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("Postagem")
+	@JsonIgnoreProperties("postagem")
 	private Tema tema;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("Postagem")
+	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
 	public long getId() {
