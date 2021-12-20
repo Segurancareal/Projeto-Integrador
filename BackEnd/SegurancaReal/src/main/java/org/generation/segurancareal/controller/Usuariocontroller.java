@@ -35,7 +35,6 @@ public class Usuariocontroller {
 	
 	@GetMapping("/all")
 	public ResponseEntity <List<Usuario>> getAll(){
-		
 		return ResponseEntity.ok(usuarioRepository.findAll());
 		
 	}
@@ -60,7 +59,7 @@ public class Usuariocontroller {
 	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario){		
 		return usuarioService.atualizarUsuario(usuario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
-			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 

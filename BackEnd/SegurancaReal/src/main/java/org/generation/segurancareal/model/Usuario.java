@@ -32,7 +32,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @NotBlank (message = "Por favor insira o Nome")
+    @NotBlank (message = "O atributo Nome é Obrigatório!")
     @Size(min = 2, max = 100)
     private String nome;
     

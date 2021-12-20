@@ -1,5 +1,7 @@
 package org.generation.segurancareal.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -26,17 +30,16 @@ public class Postagem {
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank (message = "Insira Titulo")
-	@Size (min=5,max=100)
+	@NotBlank (message = "O atributo titulo é Obrigatório!")
+	@Size (min=5,max=100, message = "O atributo titulo deve ter no mínimo 5 e no máximo 100 caracteres")
 	private String titulo;
 	
-	@NotBlank (message = "Insira Texto")
-	@Size (min=5,max=255,message = "O campo texto precisa ter no minimo 5 caracteres e no maximo 255.")
+	@NotBlank (message = "O atributo texto é Obrigatório!")
+	@Size (min=5,max=1000,message = "O campo texto precisa ter no minimo 5 caracteres e no maximo 1000.")
 	private String texto;
 	
-	@NotBlank (message = "Insira Data")
-	@Size (min=2,max=20)
-	private String data;
+	@UpdateTimestamp
+	private LocalDate data;
 	
 	private String foto;
 	
@@ -72,11 +75,11 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

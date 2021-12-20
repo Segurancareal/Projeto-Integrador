@@ -66,20 +66,6 @@ public class PostagemController {
 	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
-    
-
-	// procurar uma postagem pela data
-    	@GetMapping("/data/{data}")
-		public ResponseEntity<List<Postagem>> getByData(@PathVariable String data){
-			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
-	}
-		
-	//Procurar uma postagem pela foto
-	@GetMapping("/foto/{foto}")
-		public ResponseEntity<List<Postagem>> getByFoto(@PathVariable String foto){
-			return ResponseEntity.ok(repository.findAllByFotoContainingIgnoreCase(foto));
-	}
-	
 
     // inserir um novo dado 
 	@PostMapping

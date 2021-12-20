@@ -2,21 +2,24 @@ package org.generation.segurancareal.model;
 
 public class UserLogin {
 	
-	private long Id;
+	private Long Id;
 	
 	private String nome;
 	
-	private String email;
+	private String usuario;
 	
 	private String senha;
 	
 	private String foto;
 	
-	public long getId() {
+	private String token;
+	
+	
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 
@@ -28,7 +31,6 @@ public class UserLogin {
 		this.foto = foto;
 	}
 
-	private String token;
 
 	public String getNome() {
 		return nome;
@@ -39,11 +41,11 @@ public class UserLogin {
 	}
 
 	public String getUsuario() {
-		return email;
+		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
-		this.email = usuario;
+		this.usuario = usuario;
 	}
 
 	public String getSenha() {
