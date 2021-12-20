@@ -66,7 +66,7 @@ public class PostagemController {
 	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
-	
+    
 
 	// procurar uma postagem pela data
     	@GetMapping("/data/{data}")
