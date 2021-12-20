@@ -15,6 +15,12 @@ Acreditamos que a segurança é algo fundamental dentro do nosso corpo-social, e
 ## ◻ Como o app irá funcionar?
 Nosso projeto será de lançar uma rede social de seguranca, onde as pessoas poderiam dar seus depoimentos e denuncias dos lugares na sua cidade, bairro ou até mesmo em sua rua. Dessa maneira o nosso aplicativo iria juntar todas essas informações e sempre te avisaria caso você estivesse adentranto em alguma rgião de risco. Além disso o nosso app teria abas unicas para mulheres e pessoas LGBTQIA+. Nosso app também teraa uma função de notificar as autoridades e sinalizar sempre que ouvesse qualquer tipo de denucia.
 
+<div>
+  ### Link do deploy realizado no Swagger/Heroku
+ :https://segurancareal.herokuapp.com/
+  
+  </div>
+
 <b>◻ Integrantes do grupo<b>
   
   <p>Gustavo Moreira </p>
