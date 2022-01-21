@@ -34,7 +34,7 @@ Nosso projeto será de lançar uma rede social de seguranca, onde as pessoas pod
   <a href="https://github.com/marceloaugustoo" target="blank"><img align="center" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="https://github.com/marceloaugustoo" /></a></p>
   
   <p> Wesley Rios</p>
-  <a target="blank"><img align="center" src="https://media-exp1.licdn.com/dms/image/D4D35AQH3SGcXjtIIUA/profile-framedphoto-shrink_800_800/0/1639157726884?e=1639749600&v=beta&t=C8oigXjRztWVUrlArEUBm7V2oz1VxHawPBCobwXFxfU" width=70 /></a> 
+  <a target="blank"><img align="center" src="https://avatars.githubusercontent.com/u/93398646?v=4" width=70 /></a> 
   <a href="https://www.linkedin.com/in/wesley-rios-5890731b4" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="https://www.linkedin.com/in/wesley-rios-5890731b4" /></a>
   <a href="https://github.com/Zarps" target="blank"><img align="center" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="https://github.com/Zarps" /></a></p>
   
