@@ -45,12 +45,12 @@ public class Usuario {
     @NotBlank (message = "Por favor insira a senha de no minimo 6 caracteres")
     @Size(min = 6,  message = "A Senha deve ter no mínimo 6 caracteres")
     private String senha;
+    
+    private String foto;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
-
-    private String foto;
 
     private String tipo;
     
@@ -110,8 +110,5 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    
-    
     
 }
