@@ -40,7 +40,7 @@ public class Tema {
 	@NotBlank(message = "O atributo Assunto não pode estar vazio")
 	private String assunto;
 	
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 
